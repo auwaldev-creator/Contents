@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Gamji Global Concept - Gold 3D Promo</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --gold-1: #fff6c8;
+      --gold-2: #ffd24a;
+      --gold-3: #ffb300;
+      --glow: rgba(255,215,0,0.85);
+      --spin-speed: 12s;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      min-height:100svh;
+      background: radial-gradient(900px 600px at 50% 40%, #121216 0%, #070708 60%, #000 100%);
+      font-family:'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      color:#fff;
+      overflow-x:hidden;
+      padding:18px;
+    }
+
+    .scene{
+      perspective:1100px;
+      margin-top:28px;
+      text-align:center;
+      width:100%;
+    }
+    .text-wrapper{
+      transform-style:preserve-3d;
+      animation:spin var(--spin-speed) linear infinite;
+      display:inline-block;
+    }
+    .text-3d{
+      position:relative;
+      font-weight:800;
+      font-size:clamp(2.4rem,9vw,6.8rem);
+      letter-spacing:.02em;
+      line-height:1;
+      color:transparent;
+      background:linear-gradient(45deg,var(--gold-1) 0%, var(--gold-2) 40%, var(--gold-3) 70%, var(--gold-1) 100%);
+      -webkit-background-clip:text;
+      background-clip:text;
+      padding:8px 16px;
+      border-radius:10px;
+      text-shadow:
+        0 0 18px var(--glow),
+        0 0 30px rgba(255,230,150,0.35),
+        2px 2px 6px #b57f00,
+        5px 5px 16px rgba(0,0,0,0.7);
+      filter:drop-shadow(0 10px 30px rgba(255,200,50,0.12));
+    }
+    .text-3d::after{
+      content:attr(data-title);
+      position:absolute;
+      left:0;
+      top:0;
+      transform:translateY(110%) scaleY(-1);
+      background:inherit;
+      -webkit-background-clip:text;
+      background-clip:text;
+      color:transparent;
+      opacity:.35;
+      -webkit-mask-image:linear-gradient(transparent 22%, #000 85%);
+      mask-image:linear-gradient(transparent 22%, #000 85%);
+      filter:blur(.25px);
+    }
+
+    @keyframes spin{from{transform:rotateY(0deg)}to{transform:rotateY(360deg)}}
+
+    /* Card Section */
+    .card{
+      margin-top:40px;
+      width:320px;
+      max-width:90vw;
+      background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));
+      border:1px solid rgba(255,255,255,.04);
+      backdrop-filter:blur(6px);
+      padding:18px;
+      border-radius:14px;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:12px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+    .logo{width:160px;height:160px;border-radius:16px;overflow:hidden;display:flex;align-items:center;justify-content:center;border:3px solid rgba(255,255,255,.04);background:linear-gradient(135deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01))}
+    .logo img{width:100%;height:100%;object-fit:cover;display:block}
+    .manager{width:78px;height:78px;border-radius:50%;overflow:hidden;border:2px solid rgba(255,255,255,.04)}
+    .manager img{width:100%;height:100%;object-fit:cover}
+    .card h4{margin:0;font-size:1.05rem}
+    .card p{margin:0;font-size:.95rem;color:rgba(255,255,255,.75);text-align:center}
+    .cta{margin-top:8px;padding:8px 12px;border-radius:8px;background:linear-gradient(90deg,var(--gold-2),var(--gold-3));color:#111;font-weight:700;border:none;cursor:pointer}
+
+    @media (max-width:880px){
+      .text-3d{font-size:clamp(1.8rem,11vw,4rem)}
+      .card{width:92vw}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Company Name at the very top (no tagline under it) -->
+  <div class="scene">
+    <div class="text-wrapper">
+      <div class="text-3d" id="title" data-title="Gamji Global Concept">Gamji Global Concept</div>
+    </div>
+  </div>
+
+  <!-- Logo & Manager Card -->
+  <aside class="card" aria-label="Company card">
+    <div class="logo">
+      <img src="logo.png" alt="Gamji Global Concept logo">
+    </div>
+
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="manager"><img src="manager.jpg" alt="Manager photo"></div>
+      <div style="text-align:left">
+        <h4>Yahuza Muhammad</h4>
+        <p>Founder / Manager</p>
+      </div>
+    </div>
+
+    <p style="color:rgba(255,255,255,.8);font-size:14px;margin:0">MTN & Airtel Registration • NIN Validation • Verified</p>
+    <button class="cta" onclick="window.location.href='#'">Book Service</button>
+  </aside>
+
+  <script>
+    // Double-click to edit company name (optional)
+    const title = document.getElementById('title');
+    title.addEventListener('dblclick', ()=>{
+      const newText = prompt('Edit company name:', title.textContent);
+      if(newText !== null && newText.trim() !== ''){
+        title.textContent = newText.trim();
+        title.setAttribute('data-title', newText.trim());
+      }
+    });
+  </script>
+</body>
+</html>
