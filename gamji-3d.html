@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamji Global Concept - 3D Animation</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Wannan yana bawa 'body' damar sanya abun a tsakiya da kuma gyara background */
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(ellipse at center, #2c3e50 0%, #000000 70%);
+            font-family: 'Poppins', sans-serif; /* Wannan shine sabon font din */
+            overflow: hidden;
+        }
+
+        /* Wannan shine zangon da zai bawa rubutun damar yin motsin 3D */
+        .scene {
+            perspective: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Wannan shine kwantena da ke rike da rubutun kuma yake juyawa */
+        .text-wrapper {
+            transform-style: preserve-3d;
+            animation: spin 12s infinite linear; /* An rage saurin juyawar kadan don yayi kyau */
+        }
+        
+        /* Wannan shine ainihin rubutun da aka yiwa kwalliya */
+        .text-3d {
+            position: relative;
+            font-size: 5vw; /* Girman rubutu */
+            font-weight: 700;
+            color: transparent; /* An boye ainihin launin don gradient ya fito */
+            
+            /* Wannan shine launin gaurayen (gradient) */
+            background: linear-gradient(45deg, #00d9e9, #007bff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            
+            /* Wannan shine tasirin 3D mai zurfi ta amfani da text-shadow da yawa */
+            text-shadow: 
+                1px 1px 0px #00688c,
+                2px 2px 0px #00688c,
+                3px 3px 0px #005876,
+                4px 4px 0px #005876,
+                5px 5px 0px #004760,
+                6px 6px 0px #004760,
+                7px 7px 15px rgba(0,0,0,0.5); /* Wannan inuwa ce ta karshe */
+        }
+
+        /* Wannan shine tasirin reflection (kamar hasken gilashi) a kasa */
+        .text-3d::after {
+            content: "Gamji Global Concept"; /* Dole a sake rubuta sunan anan */
+            position: absolute;
+            left: 0;
+            top: 0;
+            
+            /* Wannan yana juya rubutun kasa sannan ya matsar dashi */
+            transform: translate(0, 110%) scaleY(-1);
+            
+            /* Wannan yana sanya reflection din yayi gauraye da background (fade out) */
+            -webkit-mask-image: linear-gradient(transparent 20%, white 80%);
+            mask-image: linear-gradient(transparent 20%, white 80%);
+        }
+
+        /* Wannan shine ainihin animation din (matakan motsi) */
+        @keyframes spin {
+            from {
+                transform: rotateY(0deg);
+            }
+            to {
+                transform: rotateY(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="scene">
+        <div class="text-wrapper">
+            <div class="text-3d">Gamji Global Concept</div>
+        </div>
+    </div>
+
+</body>
+</html>
